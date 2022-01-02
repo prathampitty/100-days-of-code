@@ -7,3 +7,11 @@
 **Thoughts:**  I cleared up all my basics! Fire; Ready to Rock; Soon, I will push my first project.
 
 **Link:** https://bit.ly/3EMrQHw
+
+### Day 2: January  1, 2022
+
+**Today's Progress**: I've completed my first project in c++, including GUI. Brush up my concepts of c++ - inheritance, polymorphism, file handling, and template exception handling.
+
+**Thoughts:**  I am finally prepared for C++.
+
+  **Link:** N/A
