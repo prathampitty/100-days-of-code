@@ -1,525 +1,245 @@
-#include <stdio.h>
-#include <time.h>
-#include <stdlib.h>
-#include <conio.h>
-#include<time.h>
-#include<ctype.h>
-#include <time.h>
+/*
+note :- I will try to keep the code simple !!
+
+Below given some functionalities of this game:
+The snake is represented with a 0(zero)symbol.
+The fruit is represented with an *(asterisk)symbol.
+The snake can move in any direction according to the user with the help of the keyboard(W, A, S, D keys).
+When the snake eats a fruit the score will increase by 10 points.
+The fruit will generate automatically within the boundaries.
+Whenever the snake will touch the boundary the game is over.
+
+
+Below given some function we are going to use in this game:
+user-defined functions
+Boundary(): This function creates the boundary in which the game will be played.
+Position_fruit(): This function will set the position of the fruit within the boundary.
+Remote_control(): This function will take the input from the keyboard.
+Movement_logic(): This function will set the movement of the snake.
+
+pre-defined functions
+ # kbhit() : This function in C is used to determine if a key has been pressed or not.
+To use this function in a program include the header file <conio.h.>
+If a key has been pressed, then it returns a non-zero value otherwise it returns zero.
+
+ # rand() : The rand() function is declared in stdlib.h.
+It returns a random integer value every time it is called.
+
+
+so for the above funtions we will include' below  header files
+# include<stdio.h>
+# include<conio.h>
+# include<stdlib.h>
+*/
+#include <stdio.h>  // this include printf and scanf
+#include <conio.h>  // this include cls
+#include <stdlib.h> //
+#include <time.h>   // used for rand() function & to add time delay
+#include <math.h>   // arithmatic logic
 #include <windows.h>
-#include <process.h>
- 
-#define UP 72
-#define DOWN 80
-#define LEFT 75
-#define RIGHT 77
- 
-int length;
-int bend_no;
-int len;
-char key;
-void record();
-void load();
-int life;
-void Delay(long double);
-void Move();
-void Food();
-int Score();
-void Print();
-void gotoxy(int x, int y);
-void GotoXY(int x,int y);
-void Bend();
-void Boarder();
-void Down();
-void Left();
-void Up();
-void Right();
-void ExitGame();
-int Scoreonly();
- 
-struct coordinate{
-    int x;
-    int y;
-    int direction;
-};
- 
-typedef struct coordinate coordinate;
- 
-coordinate head, bend[500],food,body[30];
- 
+// used to access the Win32 API functions and easy for user to use the in-built functionality
+
+// variables used
+// we are declaring in global
+int height = 30,
+    width = 30, gameover = 0, score, x, y, fruit_x, fruit_y;
+int count;
+int totalTail;
+int tail_x[100], tail_y[100];
+
+void Position_fruit() // this function is use to setup the the fruit inside the box
+{
+    srand(time(NULL));
+    x = height / 2;
+    y = width / 2;
+    score = 0;
+start:
+    fruit_x = 1 + rand() % height;
+    fruit_y = 1 + rand() % width;
+
+    if (fruit_x <= 0 || fruit_y <= 0 || fruit_x == x || fruit_y == y || fruit_x > height || fruit_y > width)
+    {
+        goto start;
+    }
+}
+
+void Boundary()
+{
+    system("cls"); // This function is used to clear the screen after each run.
+    for (int i = 0; i < height; i++)
+    {
+        for (int j = 0; j < width; j++)
+        {
+            if (i == 0 || i == width - 1 || j == 0 || j == height - 1) // This condition is for creating the box
+            {
+                printf("+");
+            }
+            else if (i == x && j == y)
+            {
+                printf("@");
+            }
+            else if (fruit_x == i && fruit_y == j)
+            {
+                printf("X");
+            }
+            else
+            {
+                int count1 = 0;
+                for (int k = 0; k < totalTail; k++)
+                {
+                    if (tail_x[k] == i && tail_y[k] == j)
+                    {
+                        printf("o"); // This will add the previous head as a tail.
+                        count1 = 1;
+                    }
+                }
+                if (count1 == 0)
+                {
+                    printf(" "); // this will insert a space inside the box
+                }
+            }
+        }
+        printf("\n");
+    }
+    printf("Score: %d", score);
+}
+
+void Remote_control()
+{ // This program will take input from user.
+    if (kbhit())
+    {
+        switch (getch())
+        {
+        case 'w':
+            count = 1;
+            break;
+        case 's':
+            count = 2;
+            break;
+        case 'a':
+            count = 3;
+            break;
+        case 'd':
+            count = 4;
+            break;
+        case 'x':
+            break;
+        }
+    }
+}
+void Movement_logic()
+{
+    int prev_x = tail_x[0];
+    int prev_y = tail_y[0];
+
+    int prev_2x, prev_2y;
+
+    tail_x[0] = x;
+    tail_y[0] = y;
+
+    for (int i = 1; i < totalTail; i++)
+    {
+        prev_2x = tail_x[i];
+        prev_2y = tail_y[i];
+
+        tail_x[i] = prev_x;
+        tail_y[i] = prev_y;
+
+        prev_x = prev_2x;
+        prev_y = prev_2y;
+    }
+
+    switch (count)
+    {
+    case 1:
+        x--;
+        break;
+    case 2:
+        x++;
+        break;
+    case 3:
+        y--;
+        break;
+    case 4:
+        y++;
+        break;
+    }
+    if (count == 1 || count == 2)
+    {
+        Sleep(25);
+    }
+    for (int i = 0; i < totalTail; i++)
+    {
+        if (tail_x[i] == x && tail_y[i] == y)
+        {
+            gameover = 1;
+        }
+    }
+    if (x > width - 1 || y > height - 1 || x < 0 || y < 0)
+    {
+        gameover = 1;
+    }
+    if (x == fruit_x && y == fruit_y)
+    {
+        score += 1;
+        totalTail++;
+
+    label2:
+        fruit_x = rand() % height;
+        fruit_y = rand() % width;
+
+        if (fruit_x <= 0 || fruit_y <= 0 || fruit_x == x || fruit_y > width)
+        {
+            goto label2;
+        }
+    }
+}
+
+void loading_function(int p, int q)
+{
+    COORD coord;
+    coord.X = p; // your X cord
+    coord.Y = q; // your Y cord
+    SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), coord);
+}
 int main()
 {
- 
-    char key;
- 
-    Print();
- 
     system("cls");
- 
-    load();
- 
-    length=5;
- 
-    head.x=25;
- 
-    head.y=20;
- 
-    head.direction=RIGHT;
- 
-    Boarder();
- 
-    Food();  
- 
-    life=3;  
- 
-    bend[0]=head;
- 
-    Move();   
- 
-    return 0;
- 
-}
- 
-void Move()
-{
-    int a,i;
- 
-    do{
- 
-        Food();
-        fflush(stdin);
- 
-        len=0;
- 
-        for(i=0;i<30;i++)
- 
-        {
- 
-            body[i].x=0;
- 
-            body[i].y=0;
- 
-            if(i==length)
- 
-            break;
- 
-        }
- 
-        Delay(length);
- 
-        Boarder();
- 
-        if(head.direction==RIGHT)
- 
-            Right();
- 
-        else if(head.direction==LEFT)
- 
-            Left();
- 
-        else if(head.direction==DOWN)
- 
-            Down();
- 
-        else if(head.direction==UP)
- 
-            Up();
- 
-        ExitGame();
- 
-    }while(!kbhit());
- 
-    a=getch();
- 
-    if(a==27)
- 
-    {
- 
-        system("cls");
- 
-        exit(0);
- 
-    }
-    key=getch();
- 
-    if((key==RIGHT&&head.direction!=LEFT&&head.direction!=RIGHT)||(key==LEFT&&head.direction!=RIGHT&&head.direction!=LEFT)||(key==UP&&head.direction!=DOWN&&head.direction!=UP)||(key==DOWN&&head.direction!=UP&&head.direction!=DOWN))
- 
-    {
- 
-        bend_no++;
- 
-        bend[bend_no]=head;
- 
-        head.direction=key;
- 
-        if(key==UP)
- 
-            head.y--;
- 
-        if(key==DOWN)
- 
-            head.y++;
- 
-        if(key==RIGHT)
- 
-            head.x++;
- 
-        if(key==LEFT)
- 
-            head.x--;
- 
-        Move();
- 
-    }
- 
-    else if(key==27)
- 
-    {
- 
-        system("cls");
- 
-        exit(0);
- 
-    }
- 
-    else
- 
-    {
- 
-        printf("\a");
- 
-        Move();
- 
-    }
-}
- 
-void gotoxy(int x, int y)
-{
- 
- COORD coord;
- 
- coord.X = x;
- 
- coord.Y = y;
- 
- SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), coord);
- 
-}
-void GotoXY(int x, int y)
-{
-    HANDLE a;
-    COORD b;
-    fflush(stdout);
-    b.X = x;
-    b.Y = y;
-    a = GetStdHandle(STD_OUTPUT_HANDLE);
-    SetConsoleCursorPosition(a,b);
- }
-void load(){
-    int row,col,r,c,q;
-    gotoxy(36,14);
-    printf("loading...");
-    gotoxy(30,15);
-    for(r=1;r<=20;r++){
-    for(q=0;q<=100000000;q++); 
-    printf("%c",177);}
+    loading_function(70, 10);
+    system("color 02");
+    printf("Ready to play snake game in c.\n");
+    printf("\n\n\n\n\nPress any key to continue...\n");
     getch();
-}
-void Down()
-{
-    int i;
-    for(i=0;i<=(head.y-bend[bend_no].y)&&len<length;i++)
     {
-        GotoXY(head.x,head.y-i);
+        system("cls");
+        int p, q;
+        loading_function(70, 10);
+        system("color 02");
+        printf("Loading...");
+        loading_function(65, 13);
+        for (p = 1; p <= 20; p++)
         {
-            if(len==0)
-                printf("v");
-            else
-                printf("*");
-        }
-        body[len].x=head.x;
-        body[len].y=head.y-i;
-        len++;
-    }
-    Bend();
-    if(!kbhit())
-        head.y++;
-}
-void Delay(long double k)
-{
-    Score();
-    long double i;
-    for(i=0;i<=(10000000);i++);
-}
-void ExitGame()
-{
-    int i,check=0;
-    for(i=4;i<length;i++)   
-    {
-        if(body[0].x==body[i].x&&body[0].y==body[i].y)
-        {
-            check++;     
-        }
-        if(i==length||check!=0)
-            break;
-    }
-    if(head.x<=10||head.x>=70||head.y<=10||head.y>=30||check!=0)
-    {
-        life--;
-        if(life>=0)
-        {
-            head.x=25;
-            head.y=20;
-            bend_no=0;
-            head.direction=RIGHT;
-            Move();
-        }
-        else
-        {
-            system("cls");
-            printf("Game Over\nBetter Luck Next Time!!!\nPress any key to quit the game\n");
-            record();
-            exit(0);
-        }
-    }
-}
-void Food()
-{
-    if(head.x==food.x&&head.y==food.y)
-    {
-        length++;
-        time_t a;
-        a=time(0);
-        srand(a);
-        food.x=rand()%70;
-        if(food.x<=10)
-            food.x+=11;
-        food.y=rand()%30;
-        if(food.y<=10)
- 
-            food.y+=11;
-    }
-    else if(food.x==0)	
-    {
-        food.x=rand()%70;
-        if(food.x<=10)
-            food.x+=11;
-        food.y=rand()%30;
-        if(food.y<=10)
-            food.y+=11;
-    }
-}
-void Left()
-{
-    int i;
-    for(i=0;i<=(bend[bend_no].x-head.x)&&len<length;i++)
-    {
-        GotoXY((head.x+i),head.y);
-       {
-                if(len==0)
-                    printf("<");
-                else
-                    printf("*");
-        }
-        body[len].x=head.x+i;
-        body[len].y=head.y;
-        len++;
-    }
-    Bend();
-    if(!kbhit())
-        head.x--;
- 
-}
-void Right()
-{
-    int i;
-    for(i=0;i<=(head.x-bend[bend_no].x)&&len<length;i++)
-    {
-         
-        body[len].x=head.x-i;
-        body[len].y=head.y;
-        GotoXY(body[len].x,body[len].y);
-        {
-            if(len==0)
-                printf(">");
-            else
-                printf("*");
-        }
-       
-        len++;
-    }
-    Bend();
-    if(!kbhit())
-        head.x++;
-}
-void Bend()
-{
-    int i,j,diff;
-    for(i=bend_no;i>=0&&len<length;i--)
-    {
-            if(bend[i].x==bend[i-1].x)
+            for (q = 0; q <= 200000000; q++)
+                ;
             {
-                diff=bend[i].y-bend[i-1].y;
-                if(diff<0)
-                    for(j=1;j<=(-diff);j++)
-                    {
-                        body[len].x=bend[i].x;
-                        body[len].y=bend[i].y+j;
-                        GotoXY(body[len].x,body[len].y);
-                        printf("*");
-                        len++;
-                        if(len==length)
-                            break;
-                    }
-                else if(diff>0)
-                    for(j=1;j<=diff;j++)
-                    {
-   
-                        body[len].x=bend[i].x;
-                        body[len].y=bend[i].y-j;
-                        GotoXY(body[len].x,body[len].y);
-                        printf("*");
-                        len++;
-                        if(len==length)
-                            break;
-                    }
+                printf("%c", 177);
             }
-        else if(bend[i].y==bend[i-1].y)
-        {
-            diff=bend[i].x-bend[i-1].x;
-            if(diff<0)
-                for(j=1;j<=(-diff)&&len<length;j++)
-                {
-   
-                    body[len].x=bend[i].x+j;
-                    body[len].y=bend[i].y;
-                    GotoXY(body[len].x,body[len].y);
-                        printf("*");
-                   len++;
-                   if(len==length)
-                           break;
-               }
-           else if(diff>0)
-               for(j=1;j<=diff&&len<length;j++)
-               {
-              
-                   body[len].x=bend[i].x-j;
-                   body[len].y=bend[i].y;
-                   GotoXY(body[len].x,body[len].y);
-                       printf("*");
-                   len++;
-                   if(len==length)
-                       break;
-               }
-       }
-   }
-}
-void Boarder()
-{
-   system("cls");
-   int i;
-   GotoXY(food.x,food.y);    
-       printf("*");
-   for(i=10;i<71;i++)
-   {
-       GotoXY(i,10);
-           printf("!");
-       GotoXY(i,30);
-           printf("!");
-   }
-   for(i=10;i<31;i++)
-   {
-       GotoXY(10,i);
-           printf("!");
-       GotoXY(70,i);
-       printf("!");
-   }
-}
-void Print()
-{
- 
-   printf("\tWelcome to the Snake game.(press any key to continue)\n");
-  getch();
-   system("cls");
-    printf("\n\nPress any key to play game...");
-   if(getch()==27)
-   exit(0);
-}
-void record(){
-   char plname[20],nplname[20],cha,c;
-   int i,j,px;
-   FILE *info;
-   info=fopen("record.txt","a+");
-   getch();
-   system("cls");
-   printf("Enter your name\n");
-   scanf("%[^\n]",plname);
- 
-   for(j=0;plname[j]!='\0';j++){  
-   nplname[0]=toupper(plname[0]);
-   if(plname[j-1]==' '){
-   nplname[j]=toupper(plname[j]);
-   nplname[j-1]=plname[j-1];}
-   else nplname[j]=plname[j];
-   }
-   nplname[j]='\0';
- 
-   fprintf(info,"Player Name :%s\n",nplname);
- 
- 
-   time_t mytime;
-  mytime = time(NULL);
-  fprintf(info,"Played Date:%s",ctime(&mytime));
- 
-     fprintf(info,"Score:%d\n",px=Scoreonly()); 
- 
-   for(i=0;i<=50;i++)
-   fprintf(info,"%c",'_');
-   fprintf(info,"\n");
-   fclose(info);
-   printf("wanna see past records press 'y'\n");
-   cha=getch();
-   system("cls");
-   if(cha=='y'){
-   info=fopen("record.txt","r");
-   do{
-       putchar(c=getc(info));
-       }while(c!=EOF);}
-     fclose(info);
-}
-int Score()
-{
-   int score;
-   GotoXY(20,8);
-   score=length-5;
-   printf("SCORE : %d",(length-5));
-   score=length-5;
-   GotoXY(50,8);
-   printf("Life : %d",life);
-   return score;
-}
-int Scoreonly()
-{
-int score=Score();
-system("cls");
-return score;
-}
-void Up()
-{
-   int i;
-   for(i=0;i<=(bend[bend_no].y-head.y)&&len<length;i++)
-   {
-       GotoXY(head.x,head.y+i);
-       {
-           if(len==0)
-               printf("^");
-           else
-               printf("*");
-       }
-       body[len].x=head.x;
-       body[len].y=head.y+i;
-       len++;
-   }
-   Bend();
-   if(!kbhit())
-       head.y--;
+        }
+    }
+    system("cls");
+    loading_function(70, 10);
+    printf("Lets go.\n\n\n\nPress any key to play the game. ");
+    getch();
+    system("cls");
+
+    Position_fruit();
+
+    while (gameover != 1)
+    {
+        Boundary();
+        Movement_logic();
+        Remote_control();
+        Sleep(30);
+    }
+    return 0;
 }
