@@ -15,3 +15,11 @@
 **Thoughts:**  I am finally prepared for C++.
 
   **Link:** N/A
+
+### Day 3: January  1, 2022
+
+**Today's Progress**: Created banking system project & basic programs in inheritance and polymorphism.
+
+**Thoughts:**  After a few more adv. projects in c++, starting python soon
+
+  **Link:**  https://bit.ly/3mQsIEE
