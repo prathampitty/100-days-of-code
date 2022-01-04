@@ -8,7 +8,7 @@
 
 **Link:** https://bit.ly/3EMrQHw
 
-### Day 2: January  1, 2022
+### Day 2: January  2, 2022
 
 **Today's Progress**: I've completed my first project in c++, including GUI. Brush up my concepts of c++ - inheritance, polymorphism, file handling, and template exception handling.
 
@@ -16,10 +16,19 @@
 
   **Link:** N/A
 
-### Day 3: January  1, 2022
+### Day 3: January  3, 2022
 
 **Today's Progress**: Created banking system project & basic programs in inheritance and polymorphism.
 
 **Thoughts:**  After a few more adv. projects in c++, starting python soon
 
   **Link:**  https://bit.ly/3mQsIEE
+
+### Day 4: January  4, 2022
+
+**Today's Progress**: Created snake and ladder game, need to modify(adding GUI, etc.).
+Implemented  basic program in the template and file handling.
+
+**Thoughts:**  Excited to start python soon 😃😄
+
+  **Link:**  https://bit.ly/3JIsSIg
