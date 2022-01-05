@@ -32,3 +32,12 @@ Implemented  basic program in the template and file handling.
 **Thoughts:**  Excited to start python soon 😃😄
 
   **Link:**  https://bit.ly/3JIsSIg
+
+### Day 5: January  5, 2022
+
+**Today's Progress**: Modified snake and ladder game (Added GUI, etc.) / Acquired badges in c, c++, python on Linkedin,  revised fundamental for python.
+
+**Thoughts:**  Eager to do the first project in python. 😃😄
+
+  **Link:**  https://bit.ly/3JIsSIg
+
