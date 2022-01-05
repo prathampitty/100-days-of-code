@@ -3,6 +3,8 @@
 #include <stdio.h>
 #include <time.h>
 #include <conio.h>
+#include <windows.h>
+#include <math.h>
 #define clrscr() system("cls");
 #define getch() kbhit()
 
@@ -13,11 +15,49 @@ void board();
 void gamescore(char name1[], char name2[], int p1, int p2);
 void play_dice(int &score);
 
+void loading_function(int p, int q)
+{
+    COORD coord;
+    coord.X = p; // your X cord
+    coord.Y = q; // your Y cord
+    SetConsoleCursorPosition(GetStdHandle(STD_OUTPUT_HANDLE), coord);
+}
+
 int main()
 {
+    system("cls");
+    loading_function(70, 10);
+    system("color 02");
+    printf("Ready to play snake game in c.\n");
+    printf("\n\n\n\n\nPress any key to continue...\n");
+    system("pause");
+    getch();
+    {
+        system("cls");
+        int p, q;
+        loading_function(70, 10);
+        system("color 02");
+        printf("Loading...");
+        loading_function(65, 13);
+        for (p = 1; p <= 20; p++)
+        {
+            for (q = 0; q <= 200000000; q++)
+                ;
+            {
+                printf("%c", 177);
+            }
+        }
+    }
+    system("cls");
+    loading_function(70, 10);
+    printf("Lets go.\n\n\n\nPress any key to play the game. ");
+    getch();
+    system("cls");
+
     int player1 = 0, player2 = 0, lastposition;
     char player1name[80], player2name[80];
     clrscr();
+    // system("color 02");
     srand(time(NULL));
     draw_line(50, '=');
     cout << "\n\n\n\n\t\tSNAKE LADDER GAME\n\n\n\n";
