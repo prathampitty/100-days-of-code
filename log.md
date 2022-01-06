@@ -41,3 +41,10 @@ Implemented  basic program in the template and file handling.
 
   **Link:**  https://bit.ly/3JIsSIg
 
+### Day 6: January  6, 2022
+
+**Today's Progress**: I finally started python today.Created basic projects:- Calculating BMI, Area, LCM, GCD. Grade Calculation System, Password checker, etc.
+
+**Thoughts:**  There were so many pre-build functions and libraries to help. So excited to code in python!
+
+  **Link:**  N/A
