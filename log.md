@@ -48,3 +48,11 @@ Implemented  basic program in the template and file handling.
 **Thoughts:**  There were so many pre-build functions and libraries to help. So excited to code in python!
 
   **Link:**  N/A
+
+### Day 7: January  7, 2022
+
+**Today's Progress**: Created basic projects like- Number Guessing Game using the random lab., Rock Paper Scissors, QR code encoder/decoder from freecodecamp, Password Generator, etc.
+
+**Thoughts:**  I am taking a short break tomorrow for travelling.
+
+  **Link:**  N/A
