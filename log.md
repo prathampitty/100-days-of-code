@@ -56,3 +56,11 @@ Implemented  basic program in the template and file handling.
 **Thoughts:**  I am taking a short break tomorrow for travelling.
 
   **Link:**  N/A
+
+  ### Day 8: January  8, 2022
+
+**Today's Progress**: Created Sudoku Solver from freecodecamp, started working on Photo Manipulation in Python.
+
+**Thoughts:**  Today 100days was challenging (coding while traveling), but devotion and accomplishment was incredible.
+
+  **Link:**  N/A
