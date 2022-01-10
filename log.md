@@ -57,10 +57,26 @@ Implemented  basic program in the template and file handling.
 
   **Link:**  N/A
 
-  ### Day 8: January  8, 2022
+### Day 8: January  8, 2022
 
 **Today's Progress**: Created Sudoku Solver from freecodecamp, started working on Photo Manipulation in Python.
 
-**Thoughts:**  Today 100days was challenging (coding while traveling), but devotion and accomplishment was incredible.
+**Thoughts:**  Today 100days was challenging (coding while traveling), but devotion and    accomplishment was incredible.
 
   **Link:**  N/A
+
+### Day 9: January  9, 2022
+
+**Today's Progress**: Learned about various python libraries like Numpy, Pandas and implemented basic programs in them.
+
+**Thoughts:**  Thinking to start learning data structure in c++ & python.
+
+  **Link:**  N/A
+
+### Day 10: January  10, 2022
+
+**Today's Progress**: Learned about data visualization using matplotlib, started data structure and algorithm in c++/ python. Also started taking part in HackerEarth events.
+
+**Thoughts:**  Today's focus was on data structure.
+
+**Link:**  N/A
