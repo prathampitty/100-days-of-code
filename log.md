@@ -80,3 +80,11 @@ Implemented  basic program in the template and file handling.
 **Thoughts:**  Today's focus was on data structure.
 
 **Link:**  N/A
+
+### Day 11: January  11, 2022
+
+**Today's Progress**: Learned about complexity in the data structure, Linux command line, started solving hacker rank problems. Data visualization using seaborn(basic level)
+
+**Thoughts:**  Current focus on Data structures.
+
+**Link:**  N/A
