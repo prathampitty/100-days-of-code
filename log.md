@@ -88,3 +88,11 @@ Implemented  basic program in the template and file handling.
 **Thoughts:**  Current focus on Data structures.
 
 **Link:**  N/A
+
+### Day 12: January  12, 2022
+
+**Today's Progress**: Learned about Linear Data Structure, a few more Linux commands, linear regression in scikit-learn, Typing practice.
+
+**Thoughts:**:  Fast typing saves lots of time.
+
+**Link:**: https://imgur.com/a/Pe8Qjnu
