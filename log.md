@@ -96,3 +96,11 @@ Implemented  basic program in the template and file handling.
 **Thoughts:**:  Fast typing saves lots of time.
 
 **Link:**: https://imgur.com/a/Pe8Qjnu
+
+### Day 13: January  13, 2022
+
+**Today's Progress**:  Knowing a few more bash shell commands, programs using Linear Data Structure, HackerRank problems in the data structure, Typing practice.
+
+**Thoughts:**: Python with data structure is much better than python first, then data structure. 
+
+**Link:**: https://bit.ly/33B01Vq
