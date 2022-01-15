@@ -104,3 +104,11 @@ Implemented  basic program in the template and file handling.
 **Thoughts:**: Python with data structure is much better than python first, then data structure. 
 
 **Link:**: https://bit.ly/33B01Vq
+
+### Day 14: January  14, 2022
+
+**Today's Progress**:  Explored non-linear data structure, file commands in Linux, continued python, typing practice.
+
+**Thoughts:**: Excited to start a new course in data structure.
+
+**Link:**: N/A
