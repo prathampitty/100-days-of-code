@@ -112,3 +112,11 @@ Implemented  basic program in the template and file handling.
 **Thoughts:**: Excited to start a new course in data structure.
 
 **Link:**: N/A
+
+### Day 14 & 15 : January 16 , 2022
+
+**Today's Progress**:  Explored non-linear data structure: B-tree, Tree, Graph, Linear regression in python, typing practice, started a certification course for python.
+
+**Thoughts:**:  Excited to do projects in python and data structure soon.
+
+**Link:**: N/A
