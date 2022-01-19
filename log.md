@@ -120,3 +120,12 @@ Implemented  basic program in the template and file handling.
 **Thoughts:**:  Excited to do projects in python and data structure soon.
 
 **Link:**: N/A
+
+### Day 16 & 17 : January 18 , 2022
+
+**Today's Progress**:  Learned about shortest path algorithm's, built programs in B-tree, Tree, Graph in the data structure.Learned sklearn.model_selection.train_test_split.
+
+
+**Thoughts:**:  Done with basic python. 
+
+**Link:**: N/A
